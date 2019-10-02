@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Book } from '../model/book';
+import { BookService } from '../api/book.service';
 
 @Component({
   selector: 'app-tab2',
@@ -7,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class Tab2Page {
 
-  constructor() {}
+  books: Book[] = [];
+
+  constructor(bookService: BookService) {
+    this.books = bookService.getAll();
+  }
 
 }
