@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Bookshelf</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-list-header>
+      My Books - press to read
+    </ion-list-header>
+
+    <ion-item *ngFor="let b of bookshelf">
+      <ion-label>
+        <h2>{{ b.book.title }}</h2>
+        <h3>Author: {{ b.book.author }}</h3>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

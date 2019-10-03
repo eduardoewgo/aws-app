@@ -14,6 +14,21 @@ const routes: Routes = [
             path: '',
             loadChildren: () =>
               import('../tab1/tab1.module').then(m => m.Tab1PageModule)
+          },
+          {
+            path: 'user-bookshelf',
+            children: [
+              {
+                path: ':userId',
+                loadChildren: () =>
+                  import('../user-bookshelf/user-bookshelf.module').then(m => m.UserBookshelfPageModule)
+              },
+              {
+                path: '',
+                redirectTo: '/tabs/tab1',
+                pathMatch: 'full'
+              }
+            ]
           }
         ]
       },
@@ -45,4 +60,5 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TabsPageRoutingModule {}
+export class TabsPageRoutingModule {
+}

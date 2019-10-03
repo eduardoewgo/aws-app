@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../model/book';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { BOOKS } from '../model/book-mock';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BookService {
 
-  constructor() { }
-
-  getAll(): Book[] {
-    return BOOKS;
+  constructor(private http: HttpClient) {
   }
 
-  getById(id: number): Book {
-    return BOOKS.find(el => el.id === id);
+  getAll(): Observable<Book[]> {
+    return this.http.get<Book[]>(`${environment.apiUrl}/book`);
+  }
+
+  getById(id: string): Observable<Book> {
+    return this.http.get<Book>(`${environment.apiUrl}/book/${id}`);
   }
 }

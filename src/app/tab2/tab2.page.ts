@@ -12,7 +12,9 @@ export class Tab2Page {
   books: Book[] = [];
 
   constructor(bookService: BookService) {
-    this.books = bookService.getAll();
+    bookService.getAll().subscribe((data: Book[]) => {
+      this.books = data;
+    });
   }
 
 }

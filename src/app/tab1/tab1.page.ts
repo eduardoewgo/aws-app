@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from '../api/user.service';
 import { User } from '../model/user';
+import { NavigationExtras, Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -11,15 +12,10 @@ export class Tab1Page {
 
   users: User[] = [];
 
-  constructor(userService: UserService) {
-    this.users = userService.getAll();
-  }
-
-  books(user: User) {
-    console.log(user);
-  }
-
-  addBook(user: User) {    
+  constructor(private userService: UserService, private router: Router) {
+    userService.getAll().subscribe((data: User[]) => {
+      this.users = data;
+    });
   }
 
 }

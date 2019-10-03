@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 import { User } from '../model/user';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-// Mocked data
-import { USERS } from '../model/user-mock';
+import { environment } from '../environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  constructor() { }
-
-  getAll(): User[] {
-    return USERS;
+  constructor(private http: HttpClient) {
   }
 
-  getById(id: number): User {
-    return USERS.find(el => el.id === id);
+  getAll(): Observable<User[]> {
+    return this.http.get<User[]>(`${environment.apiUrl}/user`);
+  }
+
+  getById(id: string): Observable<User> {
+    return this.http.get<User>(`${environment.apiUrl}/user/${id}`);
   }
 }
