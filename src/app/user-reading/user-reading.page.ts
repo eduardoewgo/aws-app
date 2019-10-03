@@ -30,7 +30,7 @@ export class UserReadingPage implements OnInit {
 
   nextPage() {
     this.generateContent();
-    this.bookshelfService.addReadingSnapshot(this.userId, this.bookId).subscribe(r => console.log(r));
+    this.bookshelfService.addReadingSnapshot(this.userId, this.bookId).subscribe();
   }
 
   generateContent() {
