@@ -14,7 +14,7 @@
       My Books - press to read
     </ion-list-header>
 
-    <ion-item *ngFor="let b of bookshelf">
+    <ion-item *ngFor="let b of bookshelf" (click)="goToReading(b.userId, b.bookId)">
       <ion-label>
         <h2>{{ b.book.title }}</h2>
         <h3>Author: {{ b.book.author }}</h3>

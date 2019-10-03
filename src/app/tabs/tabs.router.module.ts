@@ -29,6 +29,16 @@ const routes: Routes = [
                 pathMatch: 'full'
               }
             ]
+          },
+          {
+            path: 'user-reading',
+            children: [
+              {
+                path: '',
+                loadChildren: () =>
+                  import('../user-reading/user-reading.module').then(m => m.UserReadingPageModule)
+              }
+            ]
           }
         ]
       },
