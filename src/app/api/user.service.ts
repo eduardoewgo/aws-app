@@ -20,4 +20,8 @@ export class UserService {
   getById(id: string): Observable<User> {
     return this.http.get<User>(`${environment.apiUrl}/user/${id}`);
   }
+
+  add(user: User) {
+    return this.http.post(`${environment.apiUrl}/user`, user);
+  }
 }

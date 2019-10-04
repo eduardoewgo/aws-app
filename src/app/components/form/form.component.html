@@ -1,0 +1,19 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="callback()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+
+  <ion-item *ngFor="let p of properties">
+    <ion-label position="floating">{{ p }}</ion-label>
+    <ion-input [(ngModel)]="object[p]"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="submit(object); callback()" class="ion-margin-top">Save</ion-button>
+
+</ion-content>
