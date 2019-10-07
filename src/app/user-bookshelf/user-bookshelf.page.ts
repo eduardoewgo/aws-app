@@ -5,6 +5,7 @@ import { BookshelfService } from '../api/bookshelf.service';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Bookshelf } from '../model/bookshelf';
 import { Book } from '../model/book';
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-user-bookshelf',
@@ -18,7 +19,14 @@ export class UserBookshelfPage implements OnInit {
   bookshelf: Bookshelf[] = [];
 
   constructor(private route: ActivatedRoute, private router: Router,
-              private bookService: BookService, private userService: UserService, private bookshelfService: BookshelfService) {
+              private bookService: BookService, private userService: UserService, private bookshelfService: BookshelfService,
+              public loadingController: LoadingController) {
+
+    // Ideally, this should be a service - yes, I'm using the timer on purpose
+    this.loadingController.create({
+      message: 'Loading',
+      duration: 500
+    }).then(loading => loading.present());
 
     this.userId = this.route.snapshot.paramMap.get('userId');
     this.bookshelfService.getByUserId(this.userId).subscribe((data: Bookshelf[]) => this.bookshelf = data);

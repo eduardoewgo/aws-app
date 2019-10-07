@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Book } from '../model/book';
 import { BookService } from '../api/book.service';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 import { FormComponent } from '../components/form/form.component';
 
 @Component({
@@ -13,7 +13,15 @@ export class Tab2Page {
 
   books: Book[] = [];
 
-  constructor(private bookService: BookService, private modalController: ModalController) {
+  constructor(private bookService: BookService, private modalController: ModalController,
+              public loadingController: LoadingController) {
+
+    // Ideally, this should be a service - yes, I'm using the timer on purpose
+    this.loadingController.create({
+      message: 'Loading',
+      duration: 500
+    }).then(loading => loading.present());
+
     bookService.getAll().subscribe((data: Book[]) => {
       this.books = data;
     });
