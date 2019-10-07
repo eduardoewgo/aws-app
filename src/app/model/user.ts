@@ -4,7 +4,6 @@ export class User {
   firstName: string;
 
   constructor() {
-    this.id = '';
     this.username = '';
     this.firstName = '';
   }
